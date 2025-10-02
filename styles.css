@@ -916,7 +916,6 @@ h2 {
     
     /* Prevent any element from causing horizontal scroll */
     * {
-        max-width: 100%;
         box-sizing: border-box;
     }
     
