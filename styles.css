@@ -13,6 +13,7 @@ body {
     overflow-x: hidden;
     width: 100%;
     max-width: 100%;
+    min-width: 0;
 }
 
 /* Container Layout */
@@ -22,6 +23,9 @@ body {
     grid-template-columns: 300px 1fr;
     min-height: 100vh;
     gap: 0;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 /* Top Navigation Panel */
