@@ -920,7 +920,7 @@ h2 {
     }
     
     .container {
-        width: 100vw;
+        width: 100%;
         overflow-x: auto;
     }
     
