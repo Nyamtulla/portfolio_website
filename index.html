@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Top Navigation Panel -->
+        <nav class="top-panel">
+            <ul class="nav-menu">
+                <li><a href="#about" class="nav-link active" data-section="about">
+                    <i class="fas fa-user"></i> About
+                </a></li>
+                <li><a href="#education" class="nav-link" data-section="education">
+                    <i class="fas fa-graduation-cap"></i> Education
+                </a></li>
+                <li><a href="#publications" class="nav-link" data-section="publications">
+                    <i class="fas fa-book"></i> Publications
+                </a></li>
+                <li><a href="#research" class="nav-link" data-section="research">
+                    <i class="fas fa-microscope"></i> Research
+                </a></li>
+            </ul>
+        </nav>
+
+        <!-- Left Profile Panel -->
+        <aside class="left-panel">
+            <div class="profile-section">
+                <div class="profile-image">
+                    <img src="Files/Nyam_Prof_Pic.jpg" alt="Profile Picture" id="profile-img">
+                </div>
+                <h2>Nyamtulla Shaik</h2>
+                <p class="title">Ph.D. Student in Computer Science</p>
+                <p class="university">The University of Kansas (KU)</p>
+            </div>
+
+            <div class="info-section">
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Lawrence, Kansas</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>nyam@ku.edu</span>
+                </div>
+                <div class="info-item">
+                    <i class="fab fa-linkedin"></i>
+                    <a href="https://linkedin.com/in/nyamtulla/" target="_blank">linkedin.com/in/nyamtulla/</a>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-file-alt"></i>
+                    <a href="Master_Resume_Nyam.pdf" target="_blank" rel="noopener">View Resume</a>
+                </div>
+            </div>
+
+            <div class="quick-stats">
+                <h3>Quick Stats</h3>
+                <div class="stat-item">
+                    <span class="stat-number">5+</span>
+                    <span class="stat-label">Years Experience</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">10+</span>
+                    <span class="stat-label">Projects</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">1+</span>
+                    <span class="stat-label">Publications</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Center Content Panel -->
+        <main class="center-panel">
+            <!-- About Section (now first) -->
+            <section id="about" class="content-section">
+                <h2>About Me</h2>
+                <div class="content-card">
+                    <p>Ph.D. student in Computer Science at The University of Kansas (KU), focusing on Adversarial Machine Learning in autonomous systems. Passionate about AI Security, ML systems, and building practical, high-impact solutions.</p>
+                    <p>Recent honors include KU EECS Honors Award (2025) for my Master's thesis on autism stimming detection and the Paul F. Huebner Memorial Award (2024) for teaching excellence potential.</p>
+                </div>
+            </section>
+
+            <!-- Education Section -->
+            <section id="education" class="content-section">
+                <h2>Education</h2>
+                <div class="content-card">
+                    <div class="education-item">
+                        <h3>Doctor of Philosophy (PhD) in Computer Science</h3>
+                        <p class="institution">The University of Kansas (KU), Lawrence, KS, USA • GPA: 4.0</p>
+                        <p class="duration">Expected May 2027</p>
+                        <p>Research Focus: Adversarial Machine Learning in Autonomous Systems</p>
+                    </div>
+                    <div class="education-item">
+                        <h3>Master of Science (MS) in Computer Science</h3>
+                        <p class="institution">The University of Kansas (KU), Lawrence, KS, USA • GPA: 3.9</p>
+                        <p class="duration">May 2025</p>
+                        <p>Graduated with Honors. Specialized coursework: Machine Learning, Computer Vision, Cybersecurity</p>
+                    </div>
+                    <div class="education-item">
+                        <h3>Bachelor of Technology (BTech) in CSE</h3>
+                        <p class="institution">Jawaharlal Nehru Technological University (JNTU), Kakinada, India • GPA: 3.4</p>
+                        <p class="duration">Sep 2020</p>
+                        <p>Focus: Software Development, Programming Languages, Operating Systems</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Publications Section -->
+            <section id="publications" class="content-section">
+                <h2>Publications</h2>
+                <div class="content-card">
+                    <div class="publication-item">
+                        <h3>Master’s Thesis – Action Recognition for Autism Support</h3>
+                        <p class="authors">Nyamtulla Shaik</p>
+                        <p class="venue">KU EECS Honors Award, 2025</p>
+                        <p>Developed a custom 1D-CNN to detect harmful stimming behaviors (head banging, arm flapping) in autistic children from video, achieving 93.93% accuracy.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Research Section -->
+            <section id="research" class="content-section">
+                <h2>Research & Experience Highlights</h2>
+                <div class="content-card">
+                    <div class="research-grid">
+                        <div class="research-item">
+                            <h3>PhD Research – Adversarial ML & AI Security</h3>
+                            <p>Researching adversarial ML/AI security vulnerabilities and machine unlearning methods for deep learning models.</p>
+                        </div>
+                        <div class="research-item">
+                            <h3>Data Science Research Assistant (KSDS)</h3>
+                            <p>Built mobile/web app for Kansas cost-of-living analytics; used OCR to extract receipt items and structure data for dashboards.</p>
+                        </div>
+                        <div class="research-item">
+                            <h3>Graduate Teaching Assistant (KU)</h3>
+                            <p>Supported Computer Vision, Software Engineering, Programming II, and Unit Operations Lab for 170+ students; improved outcomes 15–20%.</p>
+                        </div>
+                        <div class="research-item">
+                            <h3>Data Analyst Intern, Starlight Theatre</h3>
+                            <p>Kansas City, MO • Apr 2023 – Jul 2023<br>
+                            Managed end-to-end data-driven projects, impacting decision-making for 5+ departments. Designed dynamic dashboards, improving access to strategic insights by 40% and reporting efficiency by 30%. Delivered tailored data solutions, reducing manual analysis workload by 25%.</p>
+                        </div>
+                        <div class="research-item">
+                            <h3>Data Analyst, Infosys Ltd</h3>
+                            <p>India • Nov 2020 – Jul 2022<br>
+                            Developed 5+ interactive dashboards/reports using TIBCO Spotfire and Power BI, reducing reporting time by 35%. Automated ETL workflows with Alteryx, processing 100,000+ records and reducing prep time by 40%.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Achievements Gallery Section -->
+            <section id="achievements" class="content-section">
+                <h2>Achievements & Recognition</h2>
+                <div class="content-card">
+                    <div class="gallery-container">
+                        <div class="gallery-scroll">
+                            <div class="gallery-item">
+                                <div class="gallery-image">
+                                    <img src="Files/KU_MS_Honers.jpg" alt="KU EECS Honors Award">
+                                </div>
+                                <div class="gallery-content">
+                                    <h3>KU EECS Honors Award</h3>
+                                    <p>2025 - Recognition for outstanding Master's thesis on autism stimming detection</p>
+                                </div>
+                            </div>
+                            
+                            <div class="gallery-item">
+                                <div class="gallery-image">
+                                    <img src="Files/GTA_Award.jpg" alt="Paul F. Huebner Memorial Award">
+                                </div>
+                                <div class="gallery-content">
+                                    <h3>Paul F. Huebner Memorial Award</h3>
+                                    <p>2024 - Award for teaching excellence potential and dedication to student success</p>
+                                </div>
+                            </div>
+                            
+                            <div class="gallery-item">
+                                <div class="gallery-image">
+                                    <img src="Files/Poster presentation GEA ku.jpg" alt="Poster Presentation">
+                                </div>
+                                <div class="gallery-content">
+                                    <h3>Poster Presentation - KU GEA Research Symposium</h3>
+                                    <p>2024 - Presented my Master's thesis on autism stimming detection at KU GEA research symposium</p>
+                                </div>
+                            </div>
+                            
+                            <div class="gallery-item">
+                                <div class="gallery-image">
+                                    <img src="Files/Thesis Defence.jpg" alt="Master's Thesis Defense">
+                                </div>
+                                <div class="gallery-content">
+                                    <h3>Master's Thesis Defense</h3>
+                                    <p>Successfully defended thesis on autism stimming detection with 93.93% accuracy</p>
+                                </div>
+                            </div>
+                            
+                            <div class="gallery-item">
+                                <div class="gallery-image">
+                                    <img src="Files/ACM_volunteer.JPG" alt="ACM CCS 2024 Volunteer">
+                                </div>
+                                <div class="gallery-content">
+                                    <h3>ACM CCS 2024 Volunteer</h3>
+                                    <p>Volunteered at the prestigious ACM Conference on Computer and Communications Security 2024</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-controls">
+                            <button class="scroll-btn prev-btn" id="prevBtn">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="scroll-btn next-btn" id="nextBtn">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
