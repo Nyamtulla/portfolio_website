@@ -363,7 +363,7 @@ h2 {
     padding: 1.5rem;
     background: #f8f9fa;
     border-radius: 8px;
-    border-left: 4px solid #667eea;
+    border-left: none;
 }
 
 .education-item h3 {
@@ -388,7 +388,7 @@ h2 {
     padding: 1.5rem;
     background: #f8f9fa;
     border-radius: 8px;
-    border-left: 4px solid #667eea;
+    border-left: none;
 }
 
 .publication-item h3 {
@@ -423,7 +423,7 @@ h2 {
     padding: 1.5rem;
     background: #f8f9fa;
     border-radius: 8px;
-    border-left: 4px solid #667eea;
+    border-left: none;
 }
 
 .research-item h3 {
@@ -591,11 +591,11 @@ h2 {
         height: auto;
         position: static;
         padding: 1.5rem 1rem;
-        width: 100%;
-        max-width: 100%;
+        width: 70%;
+        max-width: 70%;
         background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-        border-radius: 0;
-        margin: 0;
+        border-radius: 12px;
+        margin: 0 auto;
     }
 
     /* Enhanced mobile navigation */
@@ -725,7 +725,7 @@ h2 {
 
     .info-item i {
         width: 20px;
-        color: #4a90e2;
+        color: #666;
         font-size: 1rem;
     }
 
@@ -737,7 +737,7 @@ h2 {
     }
 
     .info-item a:hover {
-        color: #4a90e2;
+        color: #333;
     }
 
     /* Mobile quick stats */
@@ -751,14 +751,14 @@ h2 {
     .quick-stats h3 {
         font-size: 1.1rem;
         margin-bottom: 1rem;
-        text-align: center;
+        text-align: left;
         color: #2c3e50;
     }
 
     .stat-item {
         display: flex;
-        justify-content: space-between;
         align-items: center;
+        gap: 0.25rem;
         padding: 0.5rem 0;
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     }
@@ -770,12 +770,14 @@ h2 {
     .stat-number {
         font-size: 1.2rem;
         font-weight: bold;
-        color: #4a90e2;
+        color: #333;
+        margin-right: 0;
     }
 
     .stat-label {
         font-size: 0.9rem;
         color: #666;
+        margin-left: 0;
     }
 
     .hero h1 {
@@ -861,7 +863,7 @@ h2 {
     
     .education-item .institution {
         font-size: 0.9rem;
-        color: #4a90e2;
+        color: #666;
         font-weight: 500;
         margin-bottom: 0.25rem;
     }
@@ -895,7 +897,7 @@ h2 {
     
     .publication-item .authors {
         font-size: 0.9rem;
-        color: #4a90e2;
+        color: #666;
         font-weight: 500;
         margin-bottom: 0.25rem;
     }
