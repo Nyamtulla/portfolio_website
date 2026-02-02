@@ -103,16 +103,6 @@ body {
     padding: 1rem 0;
 }
 
-.top-split {
-    display: grid;
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-    gap: 1.5rem;
-    align-items: start;
-}
-
-.achievements-top .gallery-container {
-    margin: 1rem 0 0;
-}
 
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
@@ -707,9 +697,6 @@ h2 {
         font-size: 0.9rem;
     }
 
-    .top-split {
-        grid-template-columns: 1fr;
-    }
 
     .center-panel {
         height: auto;
