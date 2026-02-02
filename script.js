@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Add hover effects to cards
-    const cards = document.querySelectorAll('.content-card, .research-item, .education-item, .publication-item');
+    const cards = document.querySelectorAll('.content-card, .research-item, .education-item, .publication-item, .teaching-card');
     cards.forEach(card => {
         card.addEventListener('mouseenter', function() {
             this.style.transform = 'translateY(-5px)';

@@ -103,6 +103,17 @@ body {
     padding: 1rem 0;
 }
 
+.top-split {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.achievements-top .gallery-container {
+    margin: 1rem 0 0;
+}
+
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -431,6 +442,41 @@ h2 {
     margin-bottom: 1rem;
 }
 
+/* Teaching Styles */
+.teaching-overview {
+    margin-bottom: 1.5rem;
+}
+
+.teaching-overview p {
+    margin-bottom: 0.75rem;
+    color: #555;
+}
+
+.teaching-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+.teaching-card {
+    padding: 1.25rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.teaching-card h3 {
+    color: #2c3e50;
+    margin-bottom: 0.6rem;
+    font-size: 1.05rem;
+}
+
+.teaching-card p {
+    color: #666;
+    font-size: 0.95rem;
+}
+
 /* Contact Styles */
 .contact-info {
     display: flex;
@@ -659,6 +705,10 @@ h2 {
     .nav-link i {
         margin-right: 0.5rem;
         font-size: 0.9rem;
+    }
+
+    .top-split {
+        grid-template-columns: 1fr;
     }
 
     .center-panel {
