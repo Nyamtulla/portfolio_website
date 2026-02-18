@@ -1,0 +1,95 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Browser History Linked List Simulator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="page-title">
+    <h1>EECS 268 Lab Activity</h1>
+  </header>
+
+  <main class="app-shell">
+    <section class="browser" aria-label="Browser simulator">
+      <div class="browser-top">
+        <div class="window-controls" aria-hidden="true">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+        </div>
+        <div class="tab-strip">
+          <div class="tab active">LinkedList Browser</div>
+        </div>
+      </div>
+
+      <form id="navForm" class="toolbar" autocomplete="off">
+        <button type="button" id="backBtn" class="tool-btn" aria-label="Back">&#8592;</button>
+        <button type="button" id="forwardBtn" class="tool-btn" aria-label="Forward">&#8594;</button>
+        <div class="url-wrap">
+          <span class="lock" aria-hidden="true">&#128274;</span>
+          <input id="urlInput" name="url" type="text" placeholder="Enter URL or page name (e.g., google.com)" />
+        </div>
+        <button type="submit" class="go-btn">Go</button>
+      </form>
+
+      <section class="viewport" aria-live="polite">
+        <div class="site-badge">Now Viewing</div>
+        <h1 id="currentPage">about:blank</h1>
+        <p id="pageHint">Navigate to a URL to start building browser history.</p>
+      </section>
+    </section>
+
+    <section class="panel" aria-label="Linked list state">
+      <header class="panel-head">
+        <h2>History Linked List</h2>
+        <span id="indexChip" class="index-chip">Current Index: -1</span>
+      </header>
+
+      <div id="historyList" class="history-list" aria-live="polite"></div>
+
+      <div class="legend">
+        <span><i class="swatch current"></i>Current Pointer</span>
+        <span><i class="swatch node"></i>History Node</span>
+      </div>
+
+      <section class="learning" aria-live="polite">
+        <h3>Learning Activity</h3>
+        <p id="activitySummary">Run a command to see how nodes and pointers change.</p>
+        <ul id="stepChecklist" class="step-checklist"></ul>
+
+        <div class="node-table-wrap">
+          <table class="node-table">
+            <thead>
+              <tr>
+                <th>Index</th>
+                <th>URL</th>
+                <th>Prev</th>
+                <th>Next</th>
+                <th>Current?</th>
+              </tr>
+            </thead>
+            <tbody id="nodeTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="commands">
+        <h3>Command Log</h3>
+        <ol id="commandLog"></ol>
+      </section>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    Created by TA Nyamtulla |
+    <a href="https://nyamshaik.me" target="_blank" rel="noopener noreferrer">nyamshaik.me</a>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
