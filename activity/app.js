@@ -342,12 +342,21 @@ studentForm.addEventListener("submit", async (event) => {
 const savedStudentName = localStorage.getItem(STUDENT_NAME_STORAGE_KEY);
 if (savedStudentName) {
   unlockLab(savedStudentName);
-  logCommand("Check-in", `${savedStudentName} resumed the lab.`);
   setAction("Check-in", savedStudentName, [
     `Welcome back, ${savedStudentName}.`,
     "Loaded your previous check-in from this browser.",
-    "Continue with the activity."
+    "Recording this page open in Google Sheet."
   ]);
+  saveStudentToGoogleSheet(savedStudentName).then((result) => {
+    if (result.ok) {
+      logCommand("Check-in", `${savedStudentName} opened the lab (recorded).`);
+    } else if (result.reason === "missing_url") {
+      logCommand("Check-in", `${savedStudentName} opened the lab. Google Sheet URL not configured yet.`);
+    } else {
+      logCommand("Check-in", `${savedStudentName} opened the lab. Could not reach Google Sheet endpoint.`);
+    }
+    render();
+  });
 }
 
 render();
