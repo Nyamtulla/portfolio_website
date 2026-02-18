@@ -47,6 +47,78 @@ body {
   gap: 1.25rem;
 }
 
+.app-shell.locked {
+  opacity: 0.5;
+  pointer-events: none;
+  user-select: none;
+}
+
+.student-gate {
+  max-width: 1100px;
+  margin: 0 auto 1rem;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+  padding: 1rem;
+}
+
+.student-gate h2 {
+  margin: 0 0 0.35rem;
+  font: 700 1.1rem "Space Grotesk", sans-serif;
+}
+
+.student-gate p {
+  margin: 0 0 0.65rem;
+  color: #334155;
+  font-size: 0.92rem;
+}
+
+.student-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 0.6rem;
+}
+
+.student-form label {
+  width: 100%;
+  font-size: 0.85rem;
+  color: #475569;
+}
+
+.student-form input {
+  flex: 1;
+  min-width: 220px;
+  height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0 0.7rem;
+  font: 500 0.95rem "DM Sans", sans-serif;
+}
+
+.student-form button {
+  height: 40px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #fff;
+  border-radius: 10px;
+  padding: 0 0.9rem;
+  font: 700 0.92rem "DM Sans", sans-serif;
+  cursor: pointer;
+}
+
+.student-form button:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.gate-status {
+  min-height: 1.15rem;
+  margin-top: 0.45rem;
+  font-size: 0.84rem;
+}
+
 .browser,
 .panel {
   background: var(--panel);
@@ -377,6 +449,10 @@ body {
 
   .app-shell {
     grid-template-columns: 1fr;
+  }
+
+  .student-form button {
+    width: 100%;
   }
 
   .toolbar {

@@ -93,6 +93,12 @@ const navForm = document.getElementById("navForm");
 const urlInput = document.getElementById("urlInput");
 const backBtn = document.getElementById("backBtn");
 const forwardBtn = document.getElementById("forwardBtn");
+const appShell = document.getElementById("appShell");
+const studentGate = document.getElementById("studentGate");
+const studentForm = document.getElementById("studentForm");
+const studentNameInput = document.getElementById("studentName");
+const startLabBtn = document.getElementById("startLabBtn");
+const gateStatus = document.getElementById("gateStatus");
 const currentPage = document.getElementById("currentPage");
 const pageHint = document.getElementById("pageHint");
 const historyList = document.getElementById("historyList");
@@ -101,6 +107,11 @@ const commandLog = document.getElementById("commandLog");
 const activitySummary = document.getElementById("activitySummary");
 const stepChecklist = document.getElementById("stepChecklist");
 const nodeTableBody = document.getElementById("nodeTableBody");
+// Paste your deployed Google Apps Script Web App URL here.
+const GOOGLE_APPS_SCRIPT_URL = "AKfycbxRiBl8wcdt9WFtm0s8WNZmrgP3y9lMG7QI1HGt4lbX3StaaSJ_YQ_OWfd50ME4HxoX8Q";
+const STUDENT_NAME_STORAGE_KEY = "eecs268_student_name";
+
+let checkedInStudentName = "";
 
 let lastAction = {
   command: "Start",
@@ -199,6 +210,43 @@ function setAction(command, detail, steps) {
   lastAction = { command, detail, steps };
 }
 
+function setGateMessage(message, isError = false) {
+  gateStatus.textContent = message;
+  gateStatus.style.color = isError ? "#b91c1c" : "#166534";
+}
+
+function unlockLab(studentName) {
+  checkedInStudentName = studentName;
+  appShell.classList.remove("locked");
+  studentGate.style.display = "none";
+}
+
+async function saveStudentToGoogleSheet(studentName) {
+  if (!GOOGLE_APPS_SCRIPT_URL) {
+    return { ok: false, reason: "missing_url" };
+  }
+
+  const payload = new URLSearchParams({
+    name: studentName,
+    activity: "EECS 268 Lab Activity",
+    timestamp: new Date().toISOString()
+  });
+
+  try {
+    await fetch(GOOGLE_APPS_SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      body: payload
+    });
+    return { ok: true };
+  } catch (error) {
+    return { ok: false, reason: "network_error" };
+  }
+}
+
 navForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const value = normalizeUrl(urlInput.value);
@@ -259,5 +307,47 @@ forwardBtn.addEventListener("click", () => {
     render();
   }
 });
+
+studentForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const studentName = studentNameInput.value.trim();
+  if (!studentName) {
+    setGateMessage("Please enter your name to start.", true);
+    return;
+  }
+
+  startLabBtn.disabled = true;
+  setGateMessage("Saving your check-in...");
+
+  const result = await saveStudentToGoogleSheet(studentName);
+  localStorage.setItem(STUDENT_NAME_STORAGE_KEY, studentName);
+  unlockLab(studentName);
+
+  if (result.ok) {
+    logCommand("Check-in", `${studentName} joined the lab.`);
+  } else if (result.reason === "missing_url") {
+    logCommand("Check-in", `${studentName} joined. Google Sheet URL not configured yet.`);
+  } else {
+    logCommand("Check-in", `${studentName} joined. Could not reach Google Sheet endpoint.`);
+  }
+
+  setAction("Check-in", studentName, [
+    `Student name recorded as "${studentName}".`,
+    "Activity is now unlocked.",
+    result.ok ? "Submission sent to Google Sheet." : "Google Sheet sync not confirmed."
+  ]);
+  render();
+});
+
+const savedStudentName = localStorage.getItem(STUDENT_NAME_STORAGE_KEY);
+if (savedStudentName) {
+  unlockLab(savedStudentName);
+  logCommand("Check-in", `${savedStudentName} resumed the lab.`);
+  setAction("Check-in", savedStudentName, [
+    `Welcome back, ${savedStudentName}.`,
+    "Loaded your previous check-in from this browser.",
+    "Continue with the activity."
+  ]);
+}
 
 render();

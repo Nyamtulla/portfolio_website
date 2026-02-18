@@ -14,7 +14,18 @@
     <h1>EECS 268 Lab Activity</h1>
   </header>
 
-  <main class="app-shell">
+  <section id="studentGate" class="student-gate" aria-label="Student check-in">
+    <h2>Start Lab Activity</h2>
+    <p>Enter your name before using the simulator.</p>
+    <form id="studentForm" class="student-form" autocomplete="off">
+      <label for="studentName">Student Name</label>
+      <input id="studentName" name="studentName" type="text" required placeholder="e.g., Alex Johnson" />
+      <button type="submit" id="startLabBtn">Start Activity</button>
+    </form>
+    <p id="gateStatus" class="gate-status" aria-live="polite"></p>
+  </section>
+
+  <main id="appShell" class="app-shell locked">
     <section class="browser" aria-label="Browser simulator">
       <div class="browser-top">
         <div class="window-controls" aria-hidden="true">
