@@ -108,7 +108,7 @@ const activitySummary = document.getElementById("activitySummary");
 const stepChecklist = document.getElementById("stepChecklist");
 const nodeTableBody = document.getElementById("nodeTableBody");
 // Paste your deployed Google Apps Script Web App URL here.
-const GOOGLE_APPS_SCRIPT_URL ="https://script.google.com/macros/s/AKfycbw8uDUv6sskKVxX0rL1xUgjTdpZWG8VW65TjPHvQh1_-g8MD3e1sQeNUQ7hx0-CaEvVcw/exec" 
+const GOOGLE_APPS_SCRIPT_URL ="https://script.google.com/macros/s/AKfycbybh0c_ntXgSQP41aCTbtxqna3qIjf7Dt-IIuJuJF5NKkFUDz6fg6GqNdQ7CTiC2bG-Wg/exec"
 const STUDENT_NAME_STORAGE_KEY = "eecs268_student_name";
 
 let checkedInStudentName = "";
