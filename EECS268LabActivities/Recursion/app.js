@@ -15,6 +15,7 @@ const ui = {
   baseCondition: document.getElementById("baseCondition"),
   baseReturn: document.getElementById("baseReturn"),
   recursiveExpr: document.getElementById("recursiveExpr"),
+  exampleButtons: document.querySelectorAll(".example-btn"),
   runBtn: document.getElementById("runBtn"),
   resetBtn: document.getElementById("resetBtn"),
   statusLine: document.getElementById("statusLine"),
@@ -26,6 +27,43 @@ const ui = {
 const GOOGLE_APPS_SCRIPT_URL = window.EECS268_CONFIG?.GOOGLE_APPS_SCRIPT_URL || "";
 const STUDENT_NAME_STORAGE_KEY = "eecs268_recursion_student_name";
 const STUDENT_ID_STORAGE_KEY = "eecs268_recursion_student_id";
+const EXAMPLES = {
+  fibonacci: {
+    label: "Fibonacci",
+    startN: "6",
+    baseCondition: "n <= 1",
+    baseReturn: "n",
+    recursiveExpr: "f(n - 1) + f(n - 2)"
+  },
+  factorial: {
+    label: "Factorial",
+    startN: "5",
+    baseCondition: "n === 0",
+    baseReturn: "1",
+    recursiveExpr: "n * f(n - 1)"
+  },
+  sumToN: {
+    label: "Sum 1..n",
+    startN: "6",
+    baseCondition: "n <= 0",
+    baseReturn: "0",
+    recursiveExpr: "n + f(n - 1)"
+  },
+  powerOfTwo: {
+    label: "Power of 2",
+    startN: "5",
+    baseCondition: "n === 0",
+    baseReturn: "1",
+    recursiveExpr: "2 * f(n - 1)"
+  },
+  countdown: {
+    label: "Countdown Steps",
+    startN: "5",
+    baseCondition: "n <= 0",
+    baseReturn: "0",
+    recursiveExpr: "1 + f(n - 1)"
+  }
+};
 
 let isUnlocked = false;
 
@@ -405,6 +443,19 @@ function resetAll() {
   setStatus(isUnlocked ? "Ready." : "Complete check-in to begin.");
 }
 
+function applyExample(exampleKey) {
+  const example = EXAMPLES[exampleKey];
+  if (!example) return;
+
+  ui.startN.value = example.startN;
+  ui.baseCondition.value = example.baseCondition;
+  ui.baseReturn.value = example.baseReturn;
+  ui.recursiveExpr.value = example.recursiveExpr;
+  clearOutput();
+  setStatus(`${example.label} example loaded.`);
+  addLog(`Loaded example: ${example.label}`);
+}
+
 async function handleStudentSubmit(event) {
   event.preventDefault();
   const studentName = ui.studentName.value.trim();
@@ -439,6 +490,11 @@ function init() {
   ui.studentForm.addEventListener("submit", handleStudentSubmit);
   ui.runBtn.addEventListener("click", runAnalysis);
   ui.resetBtn.addEventListener("click", resetAll);
+  ui.exampleButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      applyExample(button.dataset.example || "");
+    });
+  });
 
   const savedStudentName = localStorage.getItem(STUDENT_NAME_STORAGE_KEY);
   const savedStudentId = localStorage.getItem(STUDENT_ID_STORAGE_KEY);
