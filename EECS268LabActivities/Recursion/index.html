@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Recursion Rule Playground</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="control-bar">
+      <h1>Recursion Rule Playground</h1>
+      <p>Enter your own base case and recursive case. The app builds a recursion tree or flags infinite recursion.</p>
+    </header>
+
+    <section id="studentGate" class="student-gate" aria-label="Student check-in">
+      <h2>Start Activity</h2>
+      <p>Enter your name and student ID before using the recursion tool.</p>
+      <form id="studentForm" class="student-form" autocomplete="off">
+        <div class="field">
+          <label for="studentName">Student Name</label>
+          <input id="studentName" name="studentName" type="text" required placeholder="e.g., Alex Johnson">
+        </div>
+        <div class="field">
+          <label for="studentId">Student ID</label>
+          <input id="studentId" name="studentId" type="text" required placeholder="e.g., 12345678">
+        </div>
+        <button id="startActivityBtn" type="submit">Start Activity</button>
+      </form>
+      <p id="gateStatus" class="gate-status" aria-live="polite"></p>
+    </section>
+
+    <section id="appShell" class="layout locked">
+      <section class="input-panel">
+        <div class="field">
+          <label for="startN">Start n</label>
+          <input id="startN" type="number" value="5" step="1">
+        </div>
+        <div class="field">
+          <label for="baseCondition">Base condition (boolean JS using n)</label>
+          <input id="baseCondition" type="text" value="n <= 1">
+        </div>
+        <div class="field">
+          <label for="baseReturn">Base return (JS expression using n)</label>
+          <input id="baseReturn" type="text" value="n">
+        </div>
+        <div class="field">
+          <label for="recursiveExpr">Recursive expression (use f(...))</label>
+          <input id="recursiveExpr" type="text" value="f(n - 1) + f(n - 2)">
+        </div>
+        <div class="actions">
+          <button id="runBtn" type="button">Build Tree</button>
+          <button id="resetBtn" type="button">Reset</button>
+        </div>
+        <p class="hint">Example: factorial style: base `n === 0`, base return `1`, recursive `n * f(n - 1)`</p>
+      </section>
+
+      <aside class="output-panel">
+        <div id="statusLine" class="status-line">Ready.</div>
+        <section id="summary" class="summary hidden" aria-live="polite"></section>
+        <section class="tree-wrap">
+          <h2>Recursion Tree</h2>
+          <div id="treeOutput" class="tree-output"></div>
+        </section>
+        <section class="log-wrap">
+          <h2>Analysis Log</h2>
+          <ol id="analysisLog" class="analysis-log"></ol>
+        </section>
+      </aside>
+    </section>
+  </main>
+
+  <script src="../config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Browser History Linked List Simulator</title>
+  <title>Process Activity - Browser History Linked List Simulator</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
@@ -11,15 +11,17 @@
 </head>
 <body>
   <header class="page-title">
-    <h1>EECS 268 Lab Activity</h1>
+    <h1>Process Activity</h1>
   </header>
 
   <section id="studentGate" class="student-gate" aria-label="Student check-in">
-    <h2>Start Lab Activity</h2>
-    <p>Enter your name for attendance before using the simulator.</p>
+    <h2>Start Process Activity</h2>
+    <p>Enter your name and student ID for attendance before using the simulator.</p>
     <form id="studentForm" class="student-form" autocomplete="off">
       <label for="studentName">Student Name</label>
       <input id="studentName" name="studentName" type="text" required placeholder="e.g., Alex Johnson" />
+      <label for="studentId">Student ID</label>
+      <input id="studentId" name="studentId" type="text" required placeholder="e.g., 12345678" />
       <button type="submit" id="startLabBtn">Start Activity</button>
     </form>
     <p id="gateStatus" class="gate-status" aria-live="polite"></p>
@@ -101,6 +103,7 @@
     <a href="https://nyamshaik.me" target="_blank" rel="noopener noreferrer">nyamshaik.me</a>
   </footer>
 
+  <script src="../config.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

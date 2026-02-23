@@ -1,4 +1,4 @@
-﻿class Node {
+class Node {
   constructor(url) {
     this.url = url;
     this.prev = null;
@@ -97,6 +97,7 @@ const appShell = document.getElementById("appShell");
 const studentGate = document.getElementById("studentGate");
 const studentForm = document.getElementById("studentForm");
 const studentNameInput = document.getElementById("studentName");
+const studentIdInput = document.getElementById("studentId");
 const startLabBtn = document.getElementById("startLabBtn");
 const gateStatus = document.getElementById("gateStatus");
 const currentPage = document.getElementById("currentPage");
@@ -108,10 +109,12 @@ const activitySummary = document.getElementById("activitySummary");
 const stepChecklist = document.getElementById("stepChecklist");
 const nodeTableBody = document.getElementById("nodeTableBody");
 // Paste your deployed Google Apps Script Web App URL here.
-const GOOGLE_APPS_SCRIPT_URL ="https://script.google.com/macros/s/AKfycbybh0c_ntXgSQP41aCTbtxqna3qIjf7Dt-IIuJuJF5NKkFUDz6fg6GqNdQ7CTiC2bG-Wg/exec"
+const GOOGLE_APPS_SCRIPT_URL = window.EECS268_CONFIG?.GOOGLE_APPS_SCRIPT_URL || "";
 const STUDENT_NAME_STORAGE_KEY = "eecs268_student_name";
+const STUDENT_ID_STORAGE_KEY = "eecs268_student_id";
 
 let checkedInStudentName = "";
+let checkedInStudentId = "";
 
 let lastAction = {
   command: "Start",
@@ -215,20 +218,23 @@ function setGateMessage(message, isError = false) {
   gateStatus.style.color = isError ? "#b91c1c" : "#166534";
 }
 
-function unlockLab(studentName) {
+function unlockLab(studentName, studentId) {
   checkedInStudentName = studentName;
+  checkedInStudentId = studentId;
   appShell.classList.remove("locked");
   studentGate.style.display = "none";
 }
 
-async function saveStudentToGoogleSheet(studentName) {
+async function saveStudentToGoogleSheet(studentName, studentId) {
   if (!GOOGLE_APPS_SCRIPT_URL) {
     return { ok: false, reason: "missing_url" };
   }
 
   const payload = new URLSearchParams({
     name: studentName,
-    activity: "EECS 268 Lab Activity",
+    id: studentId,
+    studentId,
+    activity: "Process",
     timestamp: new Date().toISOString()
   });
 
@@ -311,28 +317,30 @@ forwardBtn.addEventListener("click", () => {
 studentForm.addEventListener("submit", async (event) => {
   event.preventDefault();
   const studentName = studentNameInput.value.trim();
-  if (!studentName) {
-    setGateMessage("Please enter your name to start.", true);
+  const studentId = studentIdInput.value.trim();
+  if (!studentName || !studentId) {
+    setGateMessage("Please enter your name and student ID to start.", true);
     return;
   }
 
   startLabBtn.disabled = true;
   setGateMessage("Saving your check-in...");
 
-  const result = await saveStudentToGoogleSheet(studentName);
+  const result = await saveStudentToGoogleSheet(studentName, studentId);
   localStorage.setItem(STUDENT_NAME_STORAGE_KEY, studentName);
-  unlockLab(studentName);
+  localStorage.setItem(STUDENT_ID_STORAGE_KEY, studentId);
+  unlockLab(studentName, studentId);
 
   if (result.ok) {
-    logCommand("Check-in", `${studentName} joined the lab.`);
+    logCommand("Check-in", `${studentName} (${studentId}) joined the lab.`);
   } else if (result.reason === "missing_url") {
-    logCommand("Check-in", `${studentName} joined. Google Sheet URL not configured yet.`);
+    logCommand("Check-in", `${studentName} (${studentId}) joined. Google Sheet URL not configured yet.`);
   } else {
-    logCommand("Check-in", `${studentName} joined. Could not reach Google Sheet endpoint.`);
+    logCommand("Check-in", `${studentName} (${studentId}) joined. Could not reach Google Sheet endpoint.`);
   }
 
-  setAction("Check-in", studentName, [
-    `Student name recorded as "${studentName}".`,
+  setAction("Check-in", `${studentName} (${studentId})`, [
+    `Student name recorded as "${studentName}" and ID as "${studentId}".`,
     "Activity is now unlocked.",
     result.ok ? "Submission sent to Google Sheet." : "Google Sheet sync not confirmed."
   ]);
@@ -340,20 +348,21 @@ studentForm.addEventListener("submit", async (event) => {
 });
 
 const savedStudentName = localStorage.getItem(STUDENT_NAME_STORAGE_KEY);
-if (savedStudentName) {
-  unlockLab(savedStudentName);
-  setAction("Check-in", savedStudentName, [
-    `Welcome back, ${savedStudentName}.`,
+const savedStudentId = localStorage.getItem(STUDENT_ID_STORAGE_KEY);
+if (savedStudentName && savedStudentId) {
+  unlockLab(savedStudentName, savedStudentId);
+  setAction("Check-in", `${savedStudentName} (${savedStudentId})`, [
+    `Welcome back, ${savedStudentName} (${savedStudentId}).`,
     "Loaded your previous check-in from this browser.",
     "Recording this page open in Google Sheet."
   ]);
-  saveStudentToGoogleSheet(savedStudentName).then((result) => {
+  saveStudentToGoogleSheet(savedStudentName, savedStudentId).then((result) => {
     if (result.ok) {
-      logCommand("Check-in", `${savedStudentName} opened the lab (recorded).`);
+      logCommand("Check-in", `${savedStudentName} (${savedStudentId}) opened the lab (recorded).`);
     } else if (result.reason === "missing_url") {
-      logCommand("Check-in", `${savedStudentName} opened the lab. Google Sheet URL not configured yet.`);
+      logCommand("Check-in", `${savedStudentName} (${savedStudentId}) opened the lab. Google Sheet URL not configured yet.`);
     } else {
-      logCommand("Check-in", `${savedStudentName} opened the lab. Could not reach Google Sheet endpoint.`);
+      logCommand("Check-in", `${savedStudentName} (${savedStudentId}) opened the lab. Could not reach Google Sheet endpoint.`);
     }
     render();
   });
