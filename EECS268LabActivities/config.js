@@ -1,3 +1,2 @@
 window.EECS268_CONFIG = {
-  GOOGLE_APPS_SCRIPT_URL: "https://script.google.com/macros/s/AKfycby5AZIXFfhVV6dlwLJhS_kFPtvCkBYvuQUt2CqgC8gM-FPxYgjZEd6xUe1X-QBpZduI-w/exec"
-};
+  GOOGLE_APPS_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbxJTvLDxp6FRDljcNE_q50qz4FdZMsps3JkTs6wsYYmCE_csI66Hbjw7-vYo_9ENJfrrg/exec"}

@@ -1,3 +1,4 @@
+const SPREADSHEET_ID = "10BPM_YR1vlPKDtnivkNRbUJmJ5nvGTJTOZaGcw_7MsM";
 const SHEET_NAME = "app_logs";
 
 function doGet() {
@@ -49,7 +50,15 @@ function doPost(e) {
         .setMimeType(ContentService.MimeType.JSON);
     }
 
-    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    const ss = SPREADSHEET_ID
+      ? SpreadsheetApp.openById(SPREADSHEET_ID)
+      : SpreadsheetApp.getActiveSpreadsheet();
+
+    if (!ss) {
+      return ContentService
+        .createTextOutput(JSON.stringify({ ok: false, error: "Spreadsheet not found. Check SPREADSHEET_ID." }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
     const sheet = ss.getSheetByName(SHEET_NAME) || ss.insertSheet(SHEET_NAME);
 
     if (sheet.getLastRow() === 0) {
